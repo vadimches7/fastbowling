@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>СТРАЙК - Маскот Фаст-Боулинга</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Шапка */
+        header {
+            background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(255, 107, 53, 0.3);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+        
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+        
+        nav a:hover {
+            opacity: 0.8;
+        }
+        
+        /* Герой секция */
+        .hero {
+            margin-top: 80px;
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 100%);
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.1) 0%, transparent 70%);
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.3; }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 72px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ff6b35 0%, #ffd93d 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+        }
+        
+        .hero-subtitle {
+            font-size: 24px;
+            color: #888;
+            margin-bottom: 40px;
+        }
+        
+        /* Карточка персонажа */
+        .character-card {
+            background: #1a1a1a;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            border: 2px solid #333;
+        }
+        
+        .character-image {
+            width: 300px;
+            height: 300px;
+            background: #2a2a2a;
+            border-radius: 20px;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #666;
+            border: 3px solid #ff6b35;
+            box-shadow: 0 0 30px rgba(255, 107, 53, 0.3);
+        }
+        
+        /* История */
+        .story-section {
+            padding: 80px 0;
+            background: #111;
+        }
+        
+        .story-section h2 {
+            font-size: 48px;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #ff6b35;
+        }
+        
+        .story-content {
+            background: #1a1a1a;
+            padding: 40px;
+            border-radius: 20px;
+            line-height: 1.8;
+            font-size: 18px;
+            border-left: 5px solid #ff6b35;
+        }
+        
+        .story-content p {
+            margin-bottom: 20px;
+        }
+        
+        /* Медиа секция */
+        .media-section {
+            padding: 80px 0;
+            background: #0a0a0a;
+        }
+        
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .media-item {
+            background: #1a1a1a;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        
+        .media-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .video-placeholder {
+            width: 100%;
+            height: 200px;
+            background: #2a2a2a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+        }
+        
+        .media-item h3 {
+            padding: 20px;
+            color: #ff6b35;
+        }
+        
+        /* Лозунги */
+        .slogans-section {
+            padding: 80px 0;
+            background: #111;
+            text-align: center;
+        }
+        
+        .slogans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .slogan-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid #ff6b35;
+            transition: all 0.3s;
+        }
+        
+        .slogan-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+        }
+        
+        .slogan-main {
+            font-size: 20px;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+        
+        .slogan-cta {
+            font-size: 18px;
+            color: #ff6b35;
+            font-style: italic;
+        }
+        
+        /* Футер */
+        footer {
+            padding: 40px 0;
+            background: #0a0a0a;
+            text-align: center;
+            border-top: 1px solid #333;
+        }
+        
+        .betboom-badge {
+            display: inline-block;
+            background: #ff6b35;
+            color: #000;
+            padding: 10px 30px;
+            border-radius: 25px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 48px;
+            }
+            
+            .story-section h2 {
+                font-size: 36px;
+            }
+            
+            .slogans-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">🎳 СТРАЙК</div>
+                <nav>
+                    <ul>
+                        <li><a href="#hero">Главная</a></li>
+                        <li><a href="#story">История</a></li>
+                        <li><a href="#media">Медиа</a></li>
+                        <li><a href="#slogans">Лозунги</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Герой секция -->
+    <section id="hero" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>СТРАЙК</h1>
+                <p class="hero-subtitle">Маскот Фаст-Боулинга</p>
+                
+                <div class="character-card">
+                    <div class="character-image" style="padding: 0; overflow: hidden;">
+                        <img src="https://mariaefimovapro.ru/wp-content/uploads/2025/07/6307551974_1751618916996854-2.png" alt="Страйк - маскот фаст-боулинга" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <p><strong>Имя:</strong> Страйк (Strike)</p>
+                    <p><strong>Возраст:</strong> Вечно молодой (создан в 2025)</p>
+                    <p><strong>Происхождение:</strong> Турбо-измерение скоростного боулинга</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- История -->
+    <section id="story" class="story-section">
+        <div class="container">
+            <h2>📖 История персонажа</h2>
+            <div class="story-content">
+                <h3>Легенда рождения:</h3>
+                <p>В обычном боулинг-клубе жил самый обычный черный шар №12. Годами он катался по дорожкам, сбивая кегли в размеренном темпе классического боулинга.</p>
+                
+                <p>Но однажды, во время грозы, молния ударила прямо в боулинг-центр. Электрический разряд прошел через дорожку именно в момент броска, и шар разогнался до невероятной скорости, пробив временной портал!</p>
+                
+                <p>Попав в параллельное измерение фаст-боулинга, где все происходит в 3 раза быстрее, шар обрел сознание и превратился в Страйка - энергичного маскота нового вида спорта.</p>
+                
+                <p>Теперь его миссия - показать миру, что боулинг может быть динамичным, захватывающим и современным!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Медиа -->
+    <section id="media" class="media-section">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 48px; color: #ff6b35; margin-bottom: 20px;">🎬 Медиа материалы</h2>
+            
+            <div class="media-grid">
+                <div class="media-item">
+                    <div class="video-placeholder" style="padding: 0; position: relative; height: 200px; overflow: hidden;">
+                        <video width="100%" height="100%" autoplay loop muted playsinline style="object-fit: cover;">
+                            <source src="https://mariaefimovapro.ru/wp-content/uploads/2025/07/zapis-ekrana-2025-07-04-v-12.31.02.mov" type="video/quicktime">
+                            <source src="https://mariaefimovapro.ru/wp-content/uploads/2025/07/zapis-ekrana-2025-07-04-v-12.31.02.mov" type="video/mp4">
+                            Ваш браузер не поддерживает видео.
+                        </video>
+                    </div>
+                    <h3>Приветствие от Страйка</h3>
+                </div>
+                
+                <div class="media-item">
+                    <div class="video-placeholder" style="padding: 0; position: relative; height: 200px; overflow: hidden;">
+                        <video width="100%" height="100%" autoplay loop muted playsinline style="object-fit: cover;">
+                            <source src="https://mariaefimovapro.ru/wp-content/uploads/2025/07/mezhdu-strajkami-video-.mp4" type="video/mp4">
+                            Ваш браузер не поддерживает видео.
+                        </video>
+                    </div>
+                    <h3>Страйк в действии</h3>
+                </div>
+                
+                <div class="media-item">
+                    <div class="video-placeholder">
+                        <img src="https://mariaefimovapro.ru/wp-content/uploads/2025/07/6307551974_1751618916996854-2.png" alt="Страйк" style="width: 100%; height: 100%; object-fit: contain;">
+                    </div>
+                    <h3>Галерея персонажа</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Лозунги -->
+    <section id="slogans" class="slogans-section">
+        <div class="container">
+            <h2 style="font-size: 48px; color: #ff6b35; margin-bottom: 20px;">💬 Фирменные лозунги</h2>
+            
+            <div class="slogans-grid">
+                <div class="slogan-card">
+                    <div class="slogan-main">
+                        "Привет! Я Страйк! Фаст-боулинг - это СКОРОСТЬ, ДРАЙВ и АЗАРТ! Присоединяйся к революции!"
+                    </div>
+                    <div class="slogan-cta">
+                        ...и ВЫИГРЫВАЙ на BetBoom!
+                    </div>
+                </div>
+                
+                <div class="slogan-card">
+                    <div class="slogan-main">
+                        "Забудь про скучный боулинг! Время РАЗГОНЯТЬСЯ! Смотри, играй, кайфуй!"
+                    </div>
+                    <div class="slogan-cta">
+                        ...и делай СТРАЙК на BetBoom!
+                    </div>
+                </div>
+                
+                <div class="slogan-card">
+                    <div class="slogan-main">
+                        "Эй, чемпион! Готов к ТУРБО-боулингу? Это в 3 раза быстрее и в 10 раз круче!"
+                    </div>
+                    <div class="slogan-cta">
+                        ...ставь и ПОБЕЖДАЙ с BetBoom!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 СТРАЙК - Маскот Фаст-Боулинга</p>
+            <div class="betboom-badge">Партнер BetBoom</div>
+        </div>
+    </footer>
+
+    <script>
+        // Плавная прокрутка к секциям
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Анимация появления элементов при прокрутке
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Применяем анимацию к карточкам
+        document.querySelectorAll('.slogan-card, .media-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
