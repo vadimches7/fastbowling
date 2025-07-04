@@ -343,21 +343,15 @@
             
             <div class="media-grid">
                 <div class="media-item">
-                    <div class="video-placeholder" style="padding: 0; position: relative; height: 200px; overflow: hidden; background: #1a1a1a; cursor: pointer;" onclick="playVideo(this, 'https://mariaefimovapro.ru/wp-content/uploads/2025/07/zapis-ekrana-2025-07-04-v-12.31.02.mov')">
-                        <div class="play-button" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 60px; height: 60px; background: rgba(255, 107, 53, 0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s;">
-                            <div style="width: 0; height: 0; border-left: 20px solid white; border-top: 15px solid transparent; border-bottom: 15px solid transparent; margin-left: 5px;"></div>
-                        </div>
-                        <img src="https://mariaefimovapro.ru/wp-content/uploads/2025/07/6307551974_1751618916996854-2.png" alt="Превью видео" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.7;">
+                    <div class="video-placeholder" style="padding: 0; position: relative; height: 200px; overflow: hidden; background: #1a1a1a;">
+                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/V1IaXvKP5MM" title="Приветствие от Страйка" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position: absolute; top: 0; left: 0;"></iframe>
                     </div>
                     <h3>Приветствие от Страйка</h3>
                 </div>
                 
                 <div class="media-item">
-                    <div class="video-placeholder" style="padding: 0; position: relative; height: 200px; overflow: hidden; background: #1a1a1a; cursor: pointer;" onclick="playVideo(this, 'https://mariaefimovapro.ru/wp-content/uploads/2025/07/mezhdu-strajkami-video-.mp4')">
-                        <div class="play-button" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 60px; height: 60px; background: rgba(255, 107, 53, 0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s;">
-                            <div style="width: 0; height: 0; border-left: 20px solid white; border-top: 15px solid transparent; border-bottom: 15px solid transparent; margin-left: 5px;"></div>
-                        </div>
-                        <img src="https://mariaefimovapro.ru/wp-content/uploads/2025/07/6307551974_1751618916996854-2.png" alt="Превью видео" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.7;">
+                    <div class="video-placeholder" style="padding: 0; position: relative; height: 200px; overflow: hidden; background: #1a1a1a;">
+                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/ffh37E3Fitk" title="Страйк в действии" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position: absolute; top: 0; left: 0;"></iframe>
                     </div>
                     <h3>Страйк в действии</h3>
                 </div>
@@ -448,45 +442,6 @@
             el.style.transform = 'translateY(30px)';
             el.style.transition = 'all 0.6s ease-out';
             observer.observe(el);
-        });
-        
-        // Функция для воспроизведения видео по клику
-        function playVideo(container, videoUrl) {
-            const video = document.createElement('video');
-            video.style.width = '100%';
-            video.style.height = '100%';
-            video.style.objectFit = 'cover';
-            video.controls = true;
-            video.autoplay = true;
-            
-            const source = document.createElement('source');
-            source.src = videoUrl;
-            source.type = videoUrl.endsWith('.mov') ? 'video/quicktime' : 'video/mp4';
-            
-            video.appendChild(source);
-            container.innerHTML = '';
-            container.appendChild(video);
-            
-            video.play();
-        }
-        
-        // Эффект для кнопок play при наведении
-        document.querySelectorAll('.video-placeholder').forEach(placeholder => {
-            placeholder.addEventListener('mouseenter', function() {
-                const playBtn = this.querySelector('.play-button');
-                if (playBtn) {
-                    playBtn.style.transform = 'translate(-50%, -50%) scale(1.1)';
-                    playBtn.style.background = 'rgba(255, 107, 53, 1)';
-                }
-            });
-            
-            placeholder.addEventListener('mouseleave', function() {
-                const playBtn = this.querySelector('.play-button');
-                if (playBtn) {
-                    playBtn.style.transform = 'translate(-50%, -50%) scale(1)';
-                    playBtn.style.background = 'rgba(255, 107, 53, 0.9)';
-                }
-            });
         });
     </script>
 </body>
